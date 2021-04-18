@@ -37,7 +37,7 @@ query getUsers {
 
 ![03-graphql-api-explorer](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/i7bbyjnbkgb05u1i6w75.png)
 
-### index.graphql defines all files making up the GraphQL schema
+### `index.graphql` defines all files making up the GraphQL schema
 
 Every StepZen project requires an `index.graphql` that ties together all of our schemas. For this example we just have the `users.graphql` file included in our `@sdl` directive. The `@sdl` directive is a StepZen directive that specifies the list of files to assemble.
 
@@ -51,6 +51,8 @@ schema
   query: Query
 }
 ```
+
+### `users.graphql` defines `User` type and `getUsers` query
 
 The `User` type includes an `id` for each `User` and information about the `User` such as their `name` and `email`. For our `Query` we just have a single query called `getUsers` that returns an array of `User` objects. The `@rest` directive accepts the `endpoint` from JSONPlaceholder.
 
@@ -82,7 +84,7 @@ type Query {
 touch .env
 ```
 
-This also deployed our API to `https://username.stepzen.net/stepzen-react-tutorial/users/__graphql`. Fill in your username and set the URL to the `REACT_APP_STEPZEN_ENDPOINT` environment variable. Include your StepZen API key for the `REACT_APP_STEPZEN_API_KEY` environment variable.
+`stepzen start` also deployed our API to `https://username.stepzen.net/stepzen-react/users/__graphql`. Fill in your username and set the URL to the `REACT_APP_STEPZEN_ENDPOINT` environment variable. Include your StepZen API key for the `REACT_APP_STEPZEN_API_KEY` environment variable.
 
 ```
 REACT_APP_STEPZEN_API_KEY=YOUR_KEY_HERE
@@ -103,6 +105,7 @@ Environment variables are tricky, if you are having trouble getting your fronten
 * Make sure you are following the correct [naming convention](https://create-react-app.dev/docs/adding-custom-environment-variables/) for the environment variables
 * Make sure you are setting the deployed endpoint and not the endpoint running on localhost
 * Make sure you are using your API key and not your Admin key
+* Make sure there aren't any extra [whitespace characters](https://en.wikipedia.org/wiki/Whitespace_character) between the variable names and the actual keys
 
 When in doubt you can `console.log` lines 4-5 in `client.js` to see if your keys are being set correctly with the Apollo client.
 
