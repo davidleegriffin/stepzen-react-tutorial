@@ -6,19 +6,14 @@ The client will query a GraphQL API created from the JSONPlaceholder API. We are
 
 ![05-unordered-list-of-users](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6667k39b37vmhz2xokwc.png)
 
-## Project Setup
+## API Setup
 
 ### Clone repository and install dependencies
 
 ```
 git clone https://github.com/stepzen-samples/stepzen-react-tutorial
-cd stepzen-react-tutorial && npm i
-```
-
-### Create `.env` file
-
-```
-touch .env
+cd stepzen-react-tutorial
+npm i
 ```
 
 ### Deploy API
@@ -41,19 +36,6 @@ query getUsers {
 ```
 
 ![03-graphql-api-explorer](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/i7bbyjnbkgb05u1i6w75.png)
-
-This also deployed our API to `https://username.stepzen.net/stepzen-react-tutorial/users/__graphql`. Fill in your username and set the URL to the `REACT_APP_STEPZEN_ENDPOINT` environment variable. Include your StepZen API key for the `REACT_APP_STEPZEN_API_KEY` environment variable.
-
-```
-REACT_APP_STEPZEN_API_KEY=YOUR_KEY_HERE
-REACT_APP_STEPZEN_ENDPOINT=YOUR_ENDPOINT_HERE
-```
-
-Start the development server on `localhost:3000`.
-
-```
-npm start
-```
 
 ### index.graphql defines all files making up the GraphQL schema
 
@@ -91,6 +73,38 @@ type Query {
     )
 }
 ```
+
+## Frontend Setup
+
+### Create `.env` file
+
+```
+touch .env
+```
+
+This also deployed our API to `https://username.stepzen.net/stepzen-react-tutorial/users/__graphql`. Fill in your username and set the URL to the `REACT_APP_STEPZEN_ENDPOINT` environment variable. Include your StepZen API key for the `REACT_APP_STEPZEN_API_KEY` environment variable.
+
+```
+REACT_APP_STEPZEN_API_KEY=YOUR_KEY_HERE
+REACT_APP_STEPZEN_ENDPOINT=YOUR_ENDPOINT_HERE
+```
+
+Start the development server on `localhost:3000`.
+
+```
+npm start
+```
+
+![05-unordered-list-of-users](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6667k39b37vmhz2xokwc.png)
+
+### Troubleshoot
+
+Environment variables are tricky, if you are having trouble getting your frontend to connect to your endpoint here are a few things you can double check:
+* Make sure you are following the correct [naming convention](https://create-react-app.dev/docs/adding-custom-environment-variables/) for the environment variables
+* Make sure you are setting the deployed endpoint and not the endpoint running on localhost
+* Make sure you are using your API key and not your Admin key
+
+When in doubt you can `console.log` lines 4-5 in `client.js` to see if your keys are being set correctly with the Apollo client.
 
 ### index.html
 
@@ -241,5 +255,3 @@ export const GET_USERS_QUERY = gql`
   }
 `
 ```
-
-![05-unordered-list-of-users](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6667k39b37vmhz2xokwc.png)
